@@ -1,0 +1,88 @@
+<mat-toolbar color="primary">
+  <span>
+    <button mat-icon-button (click)="drawer.toggle()">
+      <i class="material-icons" matSuffix>subject</i>
+    </button>
+  </span>
+  <span>
+    <i class="material-icons">person_pin</i> {{user}} {{value}} </span>
+
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
+
+  <span>
+    Plus
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <i class="material-icons">details</i>
+    </button>
+    <mat-menu #menu="matMenu">
+
+      <button mat-menu-item>
+        <i class="material-icons">exit_to_app</i>
+        <span (click)="logout()">Logout</span>
+      </button>
+    </mat-menu>
+  </span>
+
+</mat-toolbar>
+
+
+<mat-drawer-container class="example-container " autosize>
+  <mat-drawer #drawer class="example-sidenav mat-elevation-z20" mode="side" opened>
+    <mat-list class="list">
+      <mat-list-item>
+        <h3 routerLink="client">
+          Client
+        </h3>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h3 routerLink="registration">
+          Registration
+
+        </h3>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h3 routerLink="cleanningMaterial">
+          Cleanning material
+        </h3>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item *ngIf="role">
+        <h3 routerLink="personalInfomation">
+          Personal Information
+        </h3>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+
+    <mat-list *ngIf="role">
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h2>Administrator</h2>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h3 routerLink="newReceptionist">
+          Create Receptionist
+        </h3>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h3 routerLink="personalInfomation">
+          Personal Information
+        </h3>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-drawer-container>
+<mat-toolbar color="primary"></mat-toolbar>

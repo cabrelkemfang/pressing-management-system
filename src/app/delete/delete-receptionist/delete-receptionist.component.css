@@ -1,0 +1,10 @@
+p{
+    color: green;
+    size: 3px;
+    }
+    
+    .del{
+    float: right;
+    background-color: red;
+    color: white;
+    }

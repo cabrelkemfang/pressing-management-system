@@ -1,0 +1,99 @@
+<mat-card class="tab">
+    <mat-card-header>
+      <mat-card-title>
+        <h2 class="card">PERSONAL INFORMATION</h2>
+      </mat-card-title>
+    </mat-card-header>
+  
+    <mat-tab-group>
+      <mat-tab label="Tab 6">
+        <ng-template mat-tab-label>
+          <i class="material-icons">person_outline</i>
+          Personal Information
+        </ng-template>
+        <mat-card class="mat-elevation-z20" >
+         
+            <mat-list role="list" *ngFor="let list of recept">
+                <mat-list-item role="listitem"><i class="material-icons" matPrefix>person_pin</i>  &nbsp; &nbsp;First Name   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp;{{list.firstName}}</mat-list-item>
+                <mat-divider></mat-divider> 
+                <mat-list-item role="listitem" > <i class="material-icons" matPrefix>person_pin</i> &nbsp; &nbsp;Last name     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp;{{list.lastName}} </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item role="listitem" > <mat-icon matPrefix>phone</mat-icon> &nbsp;Telephone Number  :&nbsp; &nbsp;{{list.phone}}</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item role="listitem" >  <i class="material-icons" matPrefix>person_pin_circle</i> &nbsp;Location       &nbsp; &nbsp; &nbsp;     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;    :&nbsp; &nbsp;{{list.location}}</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item role="listitem" >  <i class="material-icons">email</i> &nbsp;Email        &nbsp; &nbsp; &nbsp;     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;    :&nbsp; &nbsp; {{list.email}}</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item role="listitem" ><i class="material-icons"> perm_identity</i>  &nbsp;User Name   &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;:&nbsp; &nbsp; {{list.username}}</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item role="listitem" >&nbsp; &nbsp;Matricule   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;:&nbsp; &nbsp; {{list.matricule}}</mat-list-item>
+                <mat-divider></mat-divider>
+              </mat-list>
+          
+
+        </mat-card>
+  
+      </mat-tab>
+  
+      <mat-tab label="Tab 6">
+        <ng-template mat-tab-label>
+          <i class="material-icons">person_add</i>
+          Edit Personal Information
+        </ng-template>
+  
+        <form class="example-form" #receptionist="ngForm" (ngSubmit)="receptForm(receptionist.value)">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="First Name" name="firstName" [(ngModel)]="recept[0].firstName" required>
+            <i class="material-icons" matPrefix>person_pin</i>
+            <mat-error>The First name is require</mat-error>
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Last Name" name="lastName" [(ngModel)]="recept[0].lastName" required>
+            <i class="material-icons" matPrefix>person_pin</i>
+            <mat-error>The Last name is require</mat-error>
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Telephone Number" name="phone" type="number" [(ngModel)]="recept[0].phone" required>
+            <mat-icon matPrefix>phone</mat-icon>
+            <mat-error>The Telephone number is require</mat-error>
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Location" name="location" [(ngModel)]="recept[0].location" required>
+            <i class="material-icons" matPrefix>person_pin_circle</i>
+            <mat-error>The location is require</mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+              <input matInput placeholder="Email" name="email" [(ngModel)]="recept[0].email" required>
+              <i class="material-icons" matPrefix>email</i>
+              <mat-error>The  email is require</mat-error>
+
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="User Name " name="username" [(ngModel)]="recept[0].username" required>
+                <i class="material-icons" matPrefix>perm_identity</i>
+                <mat-error>The User name is require</mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Matricule " name="matricle" [(ngModel)]="recept[0].matricule" required>
+                  
+                  <mat-error>The Matricule is require</mat-error>
+                </mat-form-field>
+
+          <div class="but">
+            <button type="submit" mat-raised-button color="primary" [disabled]="!receptionist.form.valid">
+                <i class="material-icons">save</i> Save</button>
+            <button type="reset" mat-raised-button color="warn">
+              <i class="material-icons">cancel</i> Cancel</button>
+
+          </div>
+  
+        </form>
+  
+      </mat-tab>
+    </mat-tab-group>
+  
+  </mat-card>

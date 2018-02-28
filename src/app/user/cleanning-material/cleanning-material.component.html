@@ -1,0 +1,123 @@
+<mat-card class="tab">
+  <mat-card-header>
+    <mat-card-title>
+      <h2 class="card">CLEANNING MATERIAL</h2>
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-tab-group>
+    <mat-tab label="Tab 6">
+      <ng-template mat-tab-label>
+        <i class="material-icons">local_grocery_store</i>
+        Material
+      </ng-template>
+      <div class="example-container mat-elevation-z8">
+        <div class="example-header">
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          </mat-form-field>
+        </div>
+        <mat-table #table [dataSource]="dataSource">
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="position">
+            <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="material">
+            <mat-header-cell *matHeaderCellDef> Matrial Name</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="quantity">
+            <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.quantity}} </mat-cell>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="unitprice">
+            <mat-header-cell *matHeaderCellDef>Unit Price </mat-header-cell>
+            <mat-cell *matCellDef="let element" > {{element.unitPrice}} </mat-cell>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="totalprice">
+            <mat-header-cell *matHeaderCellDef>Total Price </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.totalPrice}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="but1">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-raised-button color="warn" (click)='delete(element)'>Delete</button>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="but2">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-raised-button color="primary" (click)='update(element)'>Update</button>
+            </mat-cell>
+          </ng-container>
+
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+
+        <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+        </mat-paginator>
+      </div>
+
+
+    </mat-tab>
+
+    <mat-tab label="Tab 6">
+      <ng-template mat-tab-label>
+        <i class="material-icons">add</i>
+        New Matrial
+      </ng-template>
+
+      <form class="example-form" #materialf="ngForm" (ngSubmit)="materialForm(materialf.value)">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Material Name" name="name" [(ngModel)]="name" required>
+
+          <mat-error>The Material name is require</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Quantity" name="quantity" type="number" [(ngModel)]="quantity" required #quantitym (keyup)="onKeyup(quantitym.value)">
+
+          <mat-error>The Quantity is require</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Unit Price" name="unitPrice" type="number" [(ngModel)]="unitPrice" required  #price (keyup)="onKey(price.value)">
+          <i class="material-icons" matPrefix>euro_symbol</i>
+          <mat-error>The Unit Price is require</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Total Price" name="totalPrice" type="number" [(ngModel)]="totalPrice" required>
+          <i class="material-icons" matPrefix>euro_symbol</i>
+          <mat-error>The Total Price is require</mat-error>
+        </mat-form-field>
+        <div class="but">
+          <button type="submit" mat-raised-button color="primary" [disabled]="!materialf.form.valid">
+              <i class="material-icons">save</i> save</button>
+          <button type="reset" mat-raised-button color="warn">
+            <i class="material-icons">cancel</i> Cancel</button>
+
+
+        </div>
+
+
+      </form>
+
+    </mat-tab>
+  </mat-tab-group>
+
+</mat-card>
